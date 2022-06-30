@@ -1,28 +1,21 @@
 <template>
-  <div class="home">
-    <h1>The latest jerks</h1>
-    <div class="destinations">
-      <router-link
-        v-for="jerk in jerks"
-        :key="jerk.id"
-        :to="{ name: 'destination.show', params: { id: jerk.id } }"
-      >
-        <h2>{{ jerk.firstName }} {{ jerk.lastName }}</h2>
-        <img
-          :src="getAvatar(jerk)"
-          :alt="jerk.firstName + ' ' + jerk.lastName"
-        />
-      </router-link>
+  <div>
+    <div :jerks="this.jerks" :key="this.jerks.id">
+      <h2>{{ jerks.firstName }} {{ jerks.lastName }}</h2>
+      <img
+        :src="getAvatar(jerks)"
+        :alt="jerks.firstName + ' ' + jerks.lastName"
+      />
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "JerkView",
+  name: "JerkShow",
   data() {
     return {
-      jerks: [],
+      jerks: {},
     };
   },
   methods: {
@@ -35,9 +28,20 @@ export default {
         return require("../assets/diverse.png");
       }
     },
+    // jerkId() {
+    //   return parseInt(this.$route.params.id);
+    // },
+    // singleJerk() {
+    //   return {
+    //     for
+    //   }
+    // },
   },
-  mounted() {
-    const endpoint = process.env.VUE_APP_BACKEND_BASE_URL + "/api/v1/creditor";
+  created() {
+    const endpoint =
+      process.env.VUE_APP_BACKEND_BASE_URL +
+      "/api/v1/creditor/" +
+      this.$route.params.id;
 
     const requestOptions = {
       method: "GET",
@@ -46,12 +50,12 @@ export default {
 
     fetch(endpoint, requestOptions)
       .then((response) => response.json())
-      .then((result) =>
-        result.forEach((jerk) => {
-          this.jerks.push(jerk);
-        })
-      )
+      .then((jerks) => {
+        this.jerks = jerks;
+      })
       .catch((error) => console.log("error", error));
   },
 };
 </script>
+
+<style scoped></style>
