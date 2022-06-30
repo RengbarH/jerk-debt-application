@@ -1,3 +1,5 @@
+[![CI](https://github.com/RengbarH/jerk-debt-application/actions/workflows/ci.yml/badge.svg)](https://github.com/RengbarH/jerk-debt-application/actions/workflows/ci.yml)
+
 # jerk-debt-app
 
 ## Project setup
