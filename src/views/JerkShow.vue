@@ -1,13 +1,30 @@
 <template>
-  <div>
-    <div :jerks="this.jerks" :key="this.jerks.id">
-      <h2>{{ jerks.firstName }} {{ jerks.lastName }}</h2>
+  <section
+    v-if="jerks"
+    class="destination"
+    :jerks="this.jerks"
+    :key="this.jerks.id"
+  >
+    <h1>{{ jerks.firstName }} {{ jerks.lastName }}</h1>
+    <div class="destination-details">
       <img
         :src="getAvatar(jerks)"
         :alt="jerks.firstName + ' ' + jerks.lastName"
       />
+      <p>
+        {{ jerks.firstName }} {{ jerks.lastName }} gehört zu den Verlierern
+        dieser Gesellschaft. Warum?
+        {{ jerks.gender === "MALE" ? "Er" : "Sie" }} hat es geschafft, gewissen
+        Leuten "etwas Geld" auszuleihen (genauer gesagt:
+        {{ jerks.debtors.length }} Personen) und wartet seitdem vergebens auf
+        die Rückzahlung. Das kann dauern.... Damit
+        {{ jerks.gender === "MALE" ? "er" : "sie" }} die Schuldentilgung nicht
+        vergisst, hat {{ jerks.gender === "MALE" ? "er" : "sie" }} in dieser App
+        {{ jerks.gender === "MALE" ? "sein" : "ihr" }} Gesicht verewigt und die
+        Schulden festgehalten
+      </p>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -15,7 +32,7 @@ export default {
   name: "JerkShow",
   data() {
     return {
-      jerks: {},
+      jerks: null,
     };
   },
   methods: {
@@ -28,16 +45,8 @@ export default {
         return require("../assets/diverse.png");
       }
     },
-    // jerkId() {
-    //   return parseInt(this.$route.params.id);
-    // },
-    // singleJerk() {
-    //   return {
-    //     for
-    //   }
-    // },
   },
-  created() {
+  async created() {
     const endpoint =
       process.env.VUE_APP_BACKEND_BASE_URL +
       "/api/v1/creditor/" +
@@ -48,8 +57,8 @@ export default {
       redirect: "follow",
     };
 
-    fetch(endpoint, requestOptions)
-      .then((response) => response.json())
+    await fetch(endpoint, requestOptions)
+      .then(async (response) => await response.json())
       .then((jerks) => {
         this.jerks = jerks;
       })

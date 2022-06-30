@@ -1,42 +1,21 @@
 <template>
   <div class="home">
     <h1>The latest jerks</h1>
-    <div class="destinations">
-      <router-link
-        v-for="jerk in jerks"
-        :key="jerk.id"
-        :to="{ name: 'destination.show', params: { id: jerk.id } }"
-      >
-        <h2>{{ jerk.firstName }} {{ jerk.lastName }}</h2>
-        <img
-          :src="getAvatar(jerk)"
-          :alt="jerk.firstName + ' ' + jerk.lastName"
-        />
-      </router-link>
-    </div>
+    <jerk-single :jerks="this.jerks"></jerk-single>
   </div>
 </template>
 
 <script>
+import JerkSingle from "@/components/JerkSingle";
 export default {
   name: "JerkView",
+  components: { JerkSingle },
   data() {
     return {
       jerks: [],
     };
   },
-  methods: {
-    getAvatar(debt) {
-      if (debt.gender === "MALE") {
-        return require("../assets/man.png");
-      } else if (debt.gender === "FEMALE") {
-        return require("../assets/woman.png");
-      } else if (debt.gender === "DIVERSE") {
-        return require("../assets/diverse.png");
-      }
-    },
-  },
-  mounted() {
+  async created() {
     const endpoint = process.env.VUE_APP_BACKEND_BASE_URL + "/api/v1/creditor";
 
     const requestOptions = {
@@ -44,8 +23,9 @@ export default {
       redirect: "follow",
     };
 
-    fetch(endpoint, requestOptions)
-      .then((response) => response.json())
+    this.jerks = [];
+    await fetch(endpoint, requestOptions)
+      .then(async (response) => await response.json())
       .then((result) =>
         result.forEach((jerk) => {
           this.jerks.push(jerk);
