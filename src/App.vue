@@ -1,15 +1,16 @@
 <template>
-  <nav>
-    <div id="nav">
-      <router-link to="/">Home</router-link>
-      <router-link to="/about">About</router-link>
-      <router-link to="/jerk">Jerk</router-link>
-    </div>
-    <div class="container">
-      <router-view />
-    </div>
-  </nav>
+  <TheNavigation></TheNavigation>
+  <div class="container">
+    <router-view />
+  </div>
 </template>
+
+<script>
+import TheNavigation from "@/components/TheNavigation";
+export default {
+  components: { TheNavigation },
+};
+</script>
 
 <style>
 /*#app {*/

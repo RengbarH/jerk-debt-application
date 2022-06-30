@@ -26,7 +26,8 @@ a:visited {
 
 /* Home */
 .home img {
-  max-width: 230px;
+  max-height: 230px;
+  /*max-width: 230px;*/
 }
 .home .destinations {
   display: flex;
