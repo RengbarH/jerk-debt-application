@@ -52,14 +52,16 @@
         </div>
       </div>
     </div>
+    <button-create-debt></button-create-debt>
   </section>
 </template>
 
 <script>
 import ButtonJerkDelete from "@/components/ButtonJerkDelete";
+import ButtonCreateDebt from "@/components/ButtonCreateDebt";
 export default {
   name: "JerkShow",
-  components: { ButtonJerkDelete },
+  components: { ButtonCreateDebt, ButtonJerkDelete },
   data() {
     return {
       jerks: null,
@@ -76,7 +78,6 @@ export default {
         return require("../assets/diverse.png");
       }
     },
-    // getDebitors() {}
   },
   async created() {
     // this.getDebitors()

@@ -14,7 +14,7 @@
     aria-labelledby="offcanvas-label"
   >
     <div class="offcanvas-header">
-      <h5 id="offcanvas-label">Füge einen neuen Jerk hinzu</h5>
+      <h5 id="offcanvas-label">Füge eine neue Schuld hinzu</h5>
       <button
         type="button"
         id="close-offcanvas"
@@ -26,23 +26,33 @@
     <div class="offcanvas-body">
       <form class="text-start">
         <div class="mb-3">
-          <label for="first-name" class="form-label">Vorname</label>
+          <label for="name" class="form-label">Name</label>
           <input
             type="text"
             class="form-control"
             id="first-name"
-            placeholder="Vornamen eingeben"
-            v-model="firstName"
+            placeholder="Namen eingeben"
+            v-model="debtorFirstName"
           />
         </div>
         <div class="mb-3">
-          <label for="last-name" class="form-label">Nachname</label>
+          <label for="debt" class="form-label">Betrag</label>
+          <input
+            type="Number"
+            class="form-control"
+            id="debt"
+            placeholder="Betrag eingeben"
+            v-model.number="debts"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="date" class="form-label">Datum</label>
           <input
             type="text"
             class="form-control"
-            id="last-name"
-            placeholder="Nachnamen eingeben"
-            v-model="lastName"
+            id="first-name"
+            placeholder="Bsp.: 2022-11-05"
+            v-model="dateOfDebt"
           />
         </div>
         <div class="col-md-4">
@@ -58,7 +68,7 @@
           <button
             class="btn btn-primary me-3"
             type="submit"
-            @click="createPerson"
+            @click="createDebt"
           >
             Hinzufügen
           </button>
@@ -71,25 +81,28 @@
 
 <script>
 export default {
-  name: "ButtonCreateJerk",
+  name: "ButtonCreateDebt",
   data() {
     return {
-      firstName: "",
-      lastName: "",
+      debtorFirstName: "",
+      debts: "",
+      dateOfDebt: "",
+      creditorId: parseInt(this.$route.params.id),
       gender: "",
     };
   },
   methods: {
-    createPerson() {
-      const endpoint =
-        process.env.VUE_APP_BACKEND_BASE_URL + "/api/v1/creditor";
+    createDebt() {
+      const endpoint = process.env.VUE_APP_BACKEND_BASE_URL + "api/v1/debts";
 
       const headers = new Headers();
       headers.append("Content-Type", "application/json");
 
       const payload = JSON.stringify({
-        firstName: this.firstName,
-        lastName: this.lastName,
+        debtorFirstName: this.debtorFirstName,
+        debts: this.debts,
+        dateOfDebt: this.dateOfDebt,
+        creditorId: this.creditorId,
         gender: this.gender,
       });
 

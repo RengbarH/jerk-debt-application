@@ -5,18 +5,11 @@
     type="button"
     class="btn btn-primary"
     id="liveAlertBtn"
-    :to="{ name: 'home' }"
     @click="startFunc"
   >
     <i class="bi bi-trash3"></i>
   </button>
-  <button
-    v-else
-    type="button"
-    class="btn btn-primaryOk"
-    id="liveAlertBtn"
-    :to="{ name: 'home' }"
-  >
+  <button v-else type="button" class="btn btn-primaryOk" id="liveAlertBtn">
     <i class="bi bi-check-circle-fill"></i>
   </button>
 </template>
