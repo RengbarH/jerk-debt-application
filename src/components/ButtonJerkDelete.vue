@@ -19,14 +19,6 @@
   >
     <i class="bi bi-check-circle-fill"></i>
   </button>
-  <!--  <button-->
-  <!--    type="submit"-->
-  <!--    class="btn btn-primary"-->
-  <!--    :to="{ name: 'home' }"-->
-  <!--    @click="deleteVictim"-->
-  <!--  >-->
-  <!--    <i class="bi bi-trash3"></i>-->
-  <!--  </button>-->
 </template>
 
 <script>

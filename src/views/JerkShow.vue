@@ -26,6 +26,33 @@
       <button-jerk-delete></button-jerk-delete>
     </div>
   </section>
+  <section class="experiences">
+    <h2>Die Schuldner:</h2>
+    <div class="container-fluid">
+      <div class="row row-cols-1 row-cols-md-4 g-4">
+        <div class="col" v-for="debt in debts" :key="debt.id">
+          <div class="card h-100">
+            <img
+              :src="getAvatar(debt)"
+              class="card-img-top-jerk-show"
+              :alt="debt.debtorFirstName"
+            />
+            <div class="card-body">
+              <h5 class="card-title">{{ debt.debtorFirstName }}</h5>
+              <p class="card-text">Die Schulden betragen: {{ debt.debts }} €</p>
+              <p class="card-text">
+                Schuldeneintrag am:
+                {{ new Date(debt.dateOfDebt).getMonth() + 1 }}.{{
+                  new Date(debt.dateOfDebt).getFullYear()
+                }}
+              </p>
+              <button type="button" class="btn btn-primary">TestButton</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </template>
 
 <script>
@@ -36,6 +63,7 @@ export default {
   data() {
     return {
       jerks: null,
+      debts: [],
     };
   },
   methods: {
@@ -57,6 +85,11 @@ export default {
       "/api/v1/creditor/" +
       this.$route.params.id;
 
+    const endpointTwo =
+      process.env.VUE_APP_BACKEND_BASE_URL +
+      "/api/v1/debts/" +
+      this.$route.params.id;
+
     const requestOptions = {
       method: "GET",
       redirect: "follow",
@@ -66,6 +99,13 @@ export default {
       .then(async (response) => await response.json())
       .then((jerks) => {
         this.jerks = jerks;
+      })
+      .catch((error) => console.log("error", error));
+
+    await fetch(endpointTwo, requestOptions)
+      .then(async (response) => await response.json())
+      .then((debts) => {
+        this.debts = debts;
       })
       .catch((error) => console.log("error", error));
   },
