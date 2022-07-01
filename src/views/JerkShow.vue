@@ -48,8 +48,10 @@ export default {
         return require("../assets/diverse.png");
       }
     },
+    // getDebitors() {}
   },
   async created() {
+    // this.getDebitors()
     const endpoint =
       process.env.VUE_APP_BACKEND_BASE_URL +
       "/api/v1/creditor/" +

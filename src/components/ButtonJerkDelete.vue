@@ -1,13 +1,23 @@
 <template>
   <div id="liveAlertPlaceholder"></div>
   <button
+    v-if="!deleted"
     type="button"
     class="btn btn-primary"
     id="liveAlertBtn"
     :to="{ name: 'home' }"
-    @click="mounted"
+    @click="startFunc"
   >
     <i class="bi bi-trash3"></i>
+  </button>
+  <button
+    v-else
+    type="button"
+    class="btn btn-primaryOk"
+    id="liveAlertBtn"
+    :to="{ name: 'home' }"
+  >
+    <i class="bi bi-check-circle-fill"></i>
   </button>
   <!--  <button-->
   <!--    type="submit"-->
@@ -23,7 +33,7 @@
 export default {
   name: "ButtonJerkDelete",
   data() {
-    return { jerks: null };
+    return { jerks: null, deleted: false };
   },
   emits: ["deleted"],
   methods: {
@@ -44,30 +54,8 @@ export default {
         .then(() => this.$emit("deleted"))
         .catch((error) => console.log("error", error));
     },
-    alertMessage() {
-      const alertPlaceholder = document.getElementById("liveAlertPlaceholder");
-      const alertTrigger = document.getElementById("liveAlertBtn");
-
-      function alert(message, type) {
-        const wrapper = document.createElement("div");
-        wrapper.innerHTML =
-          '<div class="alert alert-' +
-          type +
-          ' alert-dismissible" role="alert">' +
-          message +
-          '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
-
-        alertPlaceholder.append(wrapper);
-      }
-
-      if (alertTrigger) {
-        alertTrigger.addEventListener("click", function () {
-          alert("Nice! Die Person wurde erfolgreich gelöscht", "success");
-        });
-      }
-    },
-    mounted() {
-      this.alertMessage();
+    startFunc() {
+      this.deleted = true;
       this.deleteVictim();
     },
   },
@@ -80,5 +68,15 @@ export default {
   /*display: block;*/
   background-color: red;
   border-color: red;
+}
+
+.btn-primaryOk {
+  background-color: green;
+}
+.bi-check-circle-fill {
+  color: white;
+}
+.btn-primary:hover {
+  background-color: #6b0000;
 }
 </style>
