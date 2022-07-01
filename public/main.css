@@ -31,7 +31,9 @@ a:visited {
 }
 .home .destinations {
   display: flex;
+  margin-top: 180px;
   justify-content: space-between;
+  font-size: 15px;
 }
 
 /* Navigation */
@@ -76,6 +78,7 @@ a {
   display: flex;
   gap: 30px;
   align-items: center;
+  margin-top: 120px
 }
 .destination-details img {
   border-radius: 4px;
@@ -182,4 +185,36 @@ a {
   padding: 10px;
   border-radius: 5px;
   border:none;
+}
+
+
+.sticky-button {
+  position: fixed;
+  bottom: 40px;
+  right: 20px;
+  padding: 10px 15px;
+  border-radius: 30px;
+}
+
+#offcanvas-label {
+  margin-top: 40px;
+}
+
+#close-offcanvas {
+  margin-top: -70px;
+}
+
+.col-md-4{
+  width: 220px;
+}
+.me-3{
+  background-color: green;
+}
+.me-3:hover {
+  background-color: green;
+  border-color: green;
+}
+
+ {
+  background-color: green;
 }

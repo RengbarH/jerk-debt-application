@@ -23,13 +23,16 @@
         {{ jerks.gender === "MALE" ? "sein" : "ihr" }} Gesicht verewigt und die
         Schulden festgehalten
       </p>
+      <button-jerk-delete></button-jerk-delete>
     </div>
   </section>
 </template>
 
 <script>
+import ButtonJerkDelete from "@/components/ButtonJerkDelete";
 export default {
   name: "JerkShow",
+  components: { ButtonJerkDelete },
   data() {
     return {
       jerks: null,

@@ -1,15 +1,18 @@
 <template>
   <div class="home">
-    <h1>The latest jerks</h1>
     <jerk-single :jerks="this.jerks"></jerk-single>
+  </div>
+  <div>
+    <button-create-jerk></button-create-jerk>
   </div>
 </template>
 
 <script>
 import JerkSingle from "@/components/JerkSingle";
+import ButtonCreateJerk from "@/components/ButtonCreateJerk";
 export default {
   name: "JerkView",
-  components: { JerkSingle },
+  components: { ButtonCreateJerk, JerkSingle },
   data() {
     return {
       jerks: [],

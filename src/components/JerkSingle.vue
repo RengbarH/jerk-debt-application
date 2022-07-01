@@ -5,7 +5,7 @@
       :key="jerk.id"
       :to="{ name: 'destination.show', params: { id: jerk.id } }"
     >
-      <h2>{{ jerk.firstName }} {{ jerk.lastName }}</h2>
+      <h4>{{ jerk.firstName }} {{ jerk.lastName }}</h4>
       <img :src="getAvatar(jerk)" :alt="jerk.firstName + ' ' + jerk.lastName" />
     </router-link>
   </div>
