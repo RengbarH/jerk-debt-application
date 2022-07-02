@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <h2 class="hHome">Die aktuellen Jerks...</h2>
     <jerk-single :jerks="this.jerks"></jerk-single>
   </div>
   <div>

@@ -5,7 +5,7 @@
     :jerks="this.jerks"
     :key="this.jerks.id"
   >
-    <h1>{{ jerks.firstName }} {{ jerks.lastName }}</h1>
+    <h1 class="hJerk">{{ jerks.firstName }} {{ jerks.lastName }}</h1>
     <div class="destination-details">
       <img
         :src="getAvatar(jerks)"
