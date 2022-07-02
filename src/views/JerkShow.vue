@@ -46,7 +46,7 @@
                   new Date(debt.dateOfDebt).getFullYear()
                 }}
               </p>
-              <button type="button" class="btn btn-primary">TestButton</button>
+              <button-debt-delete :debts="debt"></button-debt-delete>
             </div>
           </div>
         </div>
@@ -59,9 +59,10 @@
 <script>
 import ButtonJerkDelete from "@/components/ButtonJerkDelete";
 import ButtonCreateDebt from "@/components/ButtonCreateDebt";
+import ButtonDebtDelete from "@/components/ButtonDebtDelete";
 export default {
   name: "JerkShow",
-  components: { ButtonCreateDebt, ButtonJerkDelete },
+  components: { ButtonDebtDelete, ButtonCreateDebt, ButtonJerkDelete },
   data() {
     return {
       jerks: null,
@@ -80,7 +81,6 @@ export default {
     },
   },
   async created() {
-    // this.getDebitors()
     const endpoint =
       process.env.VUE_APP_BACKEND_BASE_URL +
       "/api/v1/creditor/" +
