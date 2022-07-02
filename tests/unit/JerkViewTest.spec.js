@@ -11,4 +11,10 @@ describe("JerkView.vue", () => {
 
     })
 
+    it("should create from component", () => {
+        const wrapper = mount(JerkView)
+
+        const createForm = wrapper.findComponent(JerkSingle)
+        expect(createForm.exists()).toBeTruthy()
+    })
 })
