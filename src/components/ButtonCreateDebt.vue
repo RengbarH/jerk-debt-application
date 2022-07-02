@@ -93,7 +93,7 @@ export default {
   },
   methods: {
     createDebt() {
-      const endpoint = process.env.VUE_APP_BACKEND_BASE_URL + "api/v1/debts";
+      const endpoint = process.env.VUE_APP_BACKEND_BASE_URL + "/api/v1/debts";
 
       const headers = new Headers();
       headers.append("Content-Type", "application/json");
