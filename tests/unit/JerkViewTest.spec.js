@@ -1,8 +1,7 @@
 import { mount } from "@vue/test-utils";
-import HomeView from "@/views/HomeView";
 import JerkSingle from "@/components/JerkSingle";
 import JerkView from "@/views/JerkView";
-import jerkView from "@/views/JerkView";
+
 
 describe("JerkView.vue", () => {
   it("should show page title", () => {
