@@ -5,7 +5,7 @@
     data-bs-target="#persons-create-offcanvas"
     aria-controls="#persons-create-offcanvas"
   >
-    <i class="bi bi-person-plus-fill"></i>
+    <i class="bi bi-currency-dollar"></i>
   </button>
   <div
     class="offcanvas offcanvas-end"
