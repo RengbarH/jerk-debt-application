@@ -2,7 +2,7 @@ import {mount} from "@vue/test-utils";
 import ButtonDebtDelete from "@/components/ButtonDebtDelete";
 
 describe("ButtonDebtDelete.vue", () => {
-    it("should show page title", () => {
+    it("should test exists Button", () => {
 
         const wrapper = mount(ButtonDebtDelete)
 
