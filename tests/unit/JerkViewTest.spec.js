@@ -16,4 +16,20 @@ describe("JerkView.vue", () => {
     const createForm = wrapper.findComponent(JerkSingle);
     expect(!createForm.exists()).toBeTruthy();
   });
-});
+
+  it("should ", () => {
+    const testPerson = [{
+      id: 1,
+      firstName: 'Max',
+      lastName: 'Mustermann',
+      gender: 'MALE'
+    }]
+    const wrapper = mount(JerkView,{
+      propsData: {
+        jerks: testPerson
+      }
+    })
+    const cardTitle = wrapper.find('jerk')
+    expect(cardTitle.exists())
+  });
+})
