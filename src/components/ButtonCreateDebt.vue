@@ -24,7 +24,7 @@
       ></button>
     </div>
     <div class="offcanvas-body">
-      <form class="text-start">
+      <form class="text-start needs-validation" novalidate>
         <div class="mb-3">
           <label for="name" class="form-label">Name</label>
           <input
@@ -33,7 +33,9 @@
             id="first-name"
             placeholder="Namen eingeben"
             v-model="debtorFirstName"
+            required
           />
+          <div class="invalid-feedback">Bitte wähle einen Namen aus.</div>
         </div>
         <div class="mb-3">
           <label for="debt" class="form-label">Betrag</label>
@@ -43,7 +45,9 @@
             id="debt"
             placeholder="Betrag eingeben"
             v-model.number="debts"
+            required
           />
+          <div class="invalid-feedback">Bitte wähle einen Betrag aus.</div>
         </div>
         <div class="mb-3">
           <label for="date" class="form-label">Datum</label>
@@ -53,16 +57,19 @@
             id="first-name"
             placeholder="Bsp.: 2022-11-05"
             v-model="dateOfDebt"
+            required
           />
+          <div class="invalid-feedback">Bitte wähle ein Datum aus.</div>
         </div>
         <div class="col-md-4">
           <label for="gender" class="form-label">Geschlecht</label>
-          <select id="gender" class="form-select" v-model="gender">
+          <select id="gender" class="form-select" v-model="gender" required>
             <option value="" selected disabled>Geschlecht wählen</option>
             <option value="MALE">Male</option>
             <option value="FEMALE">Female</option>
             <option value="DIVERSE">Diverse</option>
           </select>
+          <div class="invalid-feedback">Bitte wähle ein Geschlecht aus.</div>
         </div>
         <div class="mt-5">
           <button
@@ -93,29 +100,55 @@ export default {
   },
   methods: {
     createDebt() {
-      const endpoint = process.env.VUE_APP_BACKEND_BASE_URL + "/api/v1/debts";
+      const valid = this.validate();
+      if (valid) {
+        const endpoint = process.env.VUE_APP_BACKEND_BASE_URL + "/api/v1/debts";
 
-      const headers = new Headers();
-      headers.append("Content-Type", "application/json");
+        const headers = new Headers();
+        headers.append("Content-Type", "application/json");
 
-      const payload = JSON.stringify({
-        debtorFirstName: this.debtorFirstName,
-        debts: this.debts,
-        dateOfDebt: this.dateOfDebt,
-        creditorId: this.creditorId,
-        gender: this.gender,
+        const payload = JSON.stringify({
+          debtorFirstName: this.debtorFirstName,
+          debts: this.debts,
+          dateOfDebt: this.dateOfDebt,
+          creditorId: this.creditorId,
+          gender: this.gender,
+        });
+
+        const requestOptions = {
+          method: "POST",
+          headers: headers,
+          body: payload,
+          redirect: "follow",
+        };
+
+        fetch(endpoint, requestOptions).catch((error) =>
+          console.log("error", error)
+        );
+      }
+    },
+    validate() {
+      let valid = true;
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      const forms = document.querySelectorAll(".needs-validation");
+
+      // Loop over them and prevent submission
+      Array.prototype.slice.call(forms).forEach(function (form) {
+        form.addEventListener(
+          "submit",
+          function (event) {
+            if (!form.checkValidity()) {
+              valid = false;
+              event.preventDefault();
+              event.stopPropagation();
+            }
+
+            form.classList.add("was-validated");
+          },
+          false
+        );
       });
-
-      const requestOptions = {
-        method: "POST",
-        headers: headers,
-        body: payload,
-        redirect: "follow",
-      };
-
-      fetch(endpoint, requestOptions).catch((error) =>
-        console.log("error", error)
-      );
+      return valid;
     },
   },
 };
