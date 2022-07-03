@@ -17,7 +17,7 @@ describe("JerkView.vue", () => {
     expect(!createForm.exists()).toBeTruthy();
   });
 
-  it("should ", () => {
+  it("should create testPerson and test exists ", () => {
     const testPerson = [{
       id: 1,
       firstName: 'Max',
