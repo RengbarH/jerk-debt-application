@@ -41,6 +41,14 @@ a:visited {
   padding-top: 40px;
 }
 
+.about {
+  display: flex;
+  margin-top: 30px;
+  justify-content: space-between;
+  font-size: 15px;
+  padding-top: 40px;
+}
+
 /* Navigation */
 #nav {
   position: fixed;
@@ -223,7 +231,10 @@ a {
   background-color: green;
 }
 
-.hHome {
+.h-Home {
+  padding-top: 30px;
+}
+.h-about {
   padding-top: 30px;
 }
 .hJerk {
@@ -231,4 +242,8 @@ a {
 }
 .h-jerk-single {
   /*color: transparent;*/
+}
+
+.abouthappy {
+  margin-top: 20px;
 }
