@@ -1,4 +1,5 @@
 <template>
+  <button-go-back></button-go-back>
   <section
     v-if="jerks"
     class="destination"
@@ -60,9 +61,15 @@
 import ButtonJerkDelete from "@/components/ButtonJerkDelete";
 import ButtonCreateDebt from "@/components/ButtonCreateDebt";
 import ButtonDebtDelete from "@/components/ButtonDebtDelete";
+import ButtonGoBack from "@/components/ButtonGoBack";
 export default {
   name: "JerkShow",
-  components: { ButtonDebtDelete, ButtonCreateDebt, ButtonJerkDelete },
+  components: {
+    ButtonGoBack,
+    ButtonDebtDelete,
+    ButtonCreateDebt,
+    ButtonJerkDelete,
+  },
   data() {
     return {
       jerks: null,
