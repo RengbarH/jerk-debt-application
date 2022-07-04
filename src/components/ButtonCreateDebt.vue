@@ -2,15 +2,15 @@
   <button
     class="btn btn-success sticky-button"
     data-bs-toggle="offcanvas"
-    data-bs-target="#persons-create-offcanvas"
-    aria-controls="#persons-create-offcanvas"
+    data-bs-target="#debt-create-offcanvas"
+    aria-controls="#debt-create-offcanvas"
   >
     <i class="bi bi-currency-dollar"></i>
   </button>
   <div
     class="offcanvas offcanvas-end"
     tabindex="-1"
-    id="persons-create-offcanvas"
+    id="debt-create-offcanvas"
     aria-labelledby="offcanvas-label"
   >
     <div class="offcanvas-header">

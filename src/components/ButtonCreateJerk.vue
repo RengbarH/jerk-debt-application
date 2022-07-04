@@ -2,15 +2,15 @@
   <button
     class="btn btn-success sticky-button"
     data-bs-toggle="offcanvas"
-    data-bs-target="#persons-create-offcanvas"
-    aria-controls="#persons-create-offcanvas"
+    data-bs-target="#jerk-create-offcanvas"
+    aria-controls="#jerk-create-offcanvas"
   >
     <i class="bi bi-person-plus-fill"></i>
   </button>
   <div
     class="offcanvas offcanvas-end"
     tabindex="-1"
-    id="persons-create-offcanvas"
+    id="jerk-create-offcanvas"
     aria-labelledby="offcanvas-label"
   >
     <div class="offcanvas-header">
