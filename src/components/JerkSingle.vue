@@ -6,7 +6,11 @@
       :to="{ name: 'destination.show', params: { id: jerk.id } }"
     >
       <h4 class="h-jerk-single">{{ jerk.firstName }} {{ jerk.lastName }}</h4>
-      <img :src="getAvatar(jerk)" :alt="jerk.firstName + ' ' + jerk.lastName" />
+      <img
+        class="home img"
+        :src="getAvatar(jerk)"
+        :alt="jerk.firstName + ' ' + jerk.lastName"
+      />
     </router-link>
   </div>
 </template>
