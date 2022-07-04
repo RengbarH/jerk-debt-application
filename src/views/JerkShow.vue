@@ -25,6 +25,7 @@
         Schulden festgehalten
       </p>
       <button-jerk-delete></button-jerk-delete>
+      <button-update-jerk></button-update-jerk>
     </div>
   </section>
   <section class="experiences">
@@ -62,9 +63,11 @@ import ButtonJerkDelete from "@/components/ButtonJerkDelete";
 import ButtonCreateDebt from "@/components/ButtonCreateDebt";
 import ButtonDebtDelete from "@/components/ButtonDebtDelete";
 import ButtonGoBack from "@/components/ButtonGoBack";
+import ButtonUpdateJerk from "@/components/ButtonUpdateJerk";
 export default {
   name: "JerkShow",
   components: {
+    ButtonUpdateJerk,
     ButtonGoBack,
     ButtonDebtDelete,
     ButtonCreateDebt,
